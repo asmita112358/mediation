@@ -1,0 +1,19 @@
+Package: mediation
+Type: Package
+Title: Mediation analysis using local FDR
+Version: 0.1.0
+Authors@R: c(
+    person(
+      "Asmita", "Roy",
+      email = "jane@example.com",
+      role = c("aut", "cre")
+    )
+  )
+Description: The 'mediation' package uses the estimated coefficients alpha, beta and their estimated variances from a mediation model and fits a gaussian mixture model to these coefficients. It then computes the localFDR based on this estimated mixture model, and tests for mediation effects based on the local FDR values.
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    NMOF,
+    stats
+RoxygenNote: 7.3.3
