@@ -15,11 +15,56 @@
 #' @param d2 number of non-null components for beta in two-step MLFDR.
 #' @param eps stopping criteria for EM algorithm
 #' @param verbose logical, whether to print the log-likelihood at each iteration. Default is TRUE.
-#'
+#' @param method either "unicore" or "multicore", specifies whether parallelization should be used when estimating variances in two step EM. Is not used unless twostep = TRUE
 #' @returns A vector of local false discovery rates
 #' @export
 #'
 #' @examples
+#' n = 100
+#' m = 1000
+#' pi = c(0.4, 0.1, 0.3, 0.2)
+#' X = rbinom(n, 1, 0.1)
+#' M = matrix(nrow = m, ncol = n)
+#' Y = matrix(nrow = m, ncol = n)
+#' gamma = sample(1:4, m, replace = TRUE, prob = pi)
+#' alpha = vector()
+#' beta = vector()
+
+#' vec1 = rnorm(m, 0.05, 1)
+#' vec2 = rnorm(m, -0.5, 2)
+
+#' alpha = ((gamma==2) + (gamma == 4))*vec1
+#' beta = ((gamma ==3) + (gamma == 4))*vec2
+
+
+
+#' alpha_hat = vector()
+#' beta_hat = vector()
+#' var_alpha = c()
+#' var_beta = c()
+#' p1 = vector()
+#' p2 = vector()
+#' for(i in 1:m)
+#' {
+#'   M[i,] = alpha[i]*X + rnorm(n)
+#'   Y[i,] = beta[i]*M[i,]  + rnorm(1,0.5)*X + rnorm(n)
+#'   obj1 = lm(M[i,] ~  X )
+#'   obj2 = lm(Y[i,] ~  M[i,] + X)
+
+#'   table1 = coef(summary(obj1))
+#'   table2 = coef(summary(obj2))
+
+
+#'   alpha_hat[i] = table1["X",1]
+#'   beta_hat[i] = table2["M[i, ]",1]
+#'   p1[i] = table1["X",4]
+#'   p2[i] = table2["M[i, ]",4]
+#'   var_alpha[i] = table1["X",2]^2
+#'   var_beta[i] = table2["M[i, ]",2]^2
+#' }
+
+#' lfdr <- localFDR(alpha_hat, beta_hat, var_alpha, var_beta, twostep = FALSE)
+
 localFDR <- function(alpha, beta, var_alpha, var_beta, lambda.init = NULL,
                      kappa.init = 1, psi.init = 1, psi_int = NULL, kappa_int = NULL,
                      twostep = FALSE,

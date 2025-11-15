@@ -1,6 +1,7 @@
 #' Internal function for MLFDR, mediation analysis with localFDR
-#' @importFrom stats dnorm optimize quantile
+#' @importFrom stats dnorm optimize quantile runif
 #' @importFrom NMOF gridSearch
+#' @importFrom parallel detectCores mclapply
 #' @noRd
 LL.data = function(coeff_mat, mu, sigma, lambda)
 {

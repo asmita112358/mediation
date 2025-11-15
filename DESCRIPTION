@@ -1,6 +1,6 @@
 Package: mediation
 Type: Package
-Title: Mediation analysis using local FDR
+Title: High dimensional mediation analysis using local FDR
 Version: 0.1.0
 Authors@R: c(
     person(
