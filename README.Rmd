@@ -17,13 +17,13 @@ knitr::opts_chunk$set(
 
 ## Overview
 
-The package mediation implements MLFDR, a local-FDR based solution to the high dimensional mediation analysis problem. For $H_{0i} = \alpha_i\beta_i = 0$,  $\alpha_i$ denotes the coefficient of the mediator-exposure relationship, and $\beta_i$, that of the mediator-outcome relationship. MLFDR takes the estimates and standard errors of $\alpha_i$ and $\beta_i$ and fits a Gaussian Mixture model accounting for the composite null hypothesis, and estimates a localFDR based on this Gaussian Mixture model. An adaptive procedure determines the cutoff for the local FDR.
+The package MLFDR implements a local-FDR based solution to the high dimensional mediation analysis problem. For $H_{0i} = \alpha_i\beta_i = 0$,  $\alpha_i$ denotes the coefficient of the mediator-exposure relationship, and $\beta_i$, that of the mediator-outcome relationship. MLFDR takes the estimates and standard errors of $\alpha_i$ and $\beta_i$ and fits a Gaussian Mixture model accounting for the composite null hypothesis, and estimates a localFDR based on this Gaussian Mixture model. An adaptive procedure determines the cutoff for the local FDR.
 
 ## Installation
 
 You can install the development version of mediation from [GitHub](https://github.com/asmita112358/mediation) with:
 ```{r}
-devtools::install_github("asmita112358/mediation")
+devtools::install_github("asmita112358/MLFDR")
 ```
 
 
@@ -33,10 +33,10 @@ This is a basic example which demonstrates the implementation of MLFDR. For more
 
 
 ```{r example}
-library(mediation)
+library(MLFDR)
 n = 100
 m = 1000
-pi = c(0.4, 0.1, 0.3, 0.2)
+pi = c(0.4, 0.2, 0.3, 0.1)
 X = rbinom(n, 1, 0.1)
 M = matrix(nrow = m, ncol = n)
 Y = matrix(nrow = m, ncol = n)

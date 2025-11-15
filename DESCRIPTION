@@ -1,4 +1,4 @@
-Package: mediation
+Package: MLFDR
 Type: Package
 Title: High dimensional mediation analysis using local FDR
 Version: 0.1.0
