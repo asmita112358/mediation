@@ -1,6 +1,6 @@
 Package: MLFDR
 Type: Package
-Title: High dimensional mediation analysis using local FDR
+Title: High Dimensional Mediation Analysis using Local False Discovery Rates
 Version: 0.1.0
 Authors@R: c(
     person(
