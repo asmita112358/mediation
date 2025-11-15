@@ -39,18 +39,31 @@ LL.complete.v2 <- function(kappa, psi, var_alpha, var_beta, coeff_mat, mu.new, z
 }
 
 
-EM_fun <- function(coeff_mat, k = 4, var_alpha, var_beta ,lambda.init = c(0.7, 0.1, 0.1, 0.1), kappa.init = 1, psi.init = 1,
+EM_fun <- function(coeff_mat, k = 4, var_alpha, var_beta ,lambda.init = NULL, kappa.init = NULL, psi.init = NULL,
                    kappa_int = NULL, psi_int = NULL,
                    epsilon = 1e-02, maxit = 10000, verbose = FALSE)
 {
-  lambda = lambda.init
+  if(is.null(lambda.init)){
+   lambda = c(0.7, 0.1, 0.1, 0.1)
+  }else{
+    lambda = lambda.init
+  }
   coeff_mat <- as.matrix(coeff_mat)
   m <- nrow(coeff_mat)
   p <- ncol(coeff_mat)
   mu.init = quantile(coeff_mat[,1], 0.99)
   theta.init = quantile(coeff_mat[,2], 0.99)
-  kappa = kappa.init
-  psi = psi.init
+  if(is.null(kappa.init)){
+    kappa = 1
+  }else{
+    kappa = kappa.init
+  }
+
+  if(is.null(psi.init)){
+    psi = 1
+    }else{
+      psi = psi.init
+    }
   if(is.null(kappa_int)){
     kappa_int = c(min(0.1, min(var_alpha)), max(10, max(var_alpha)))
   }

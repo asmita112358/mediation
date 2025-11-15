@@ -20,11 +20,11 @@
 #' @export
 #'
 #' @examples
-localFDR <- function(alpha, beta, var_alpha, var_beta, lambda.init = c(0.7, 0.1, 0.1, 0.1),
+localFDR <- function(alpha, beta, var_alpha, var_beta, lambda.init = NULL,
                      kappa.init = 1, psi.init = 1, psi_int = NULL, kappa_int = NULL,
                      twostep = FALSE,
                      k = 4, d1 = NULL, d2 = NULL, eps = 1e-02,
-                     verbose = TRUE){
+                     verbose = TRUE, method = "unicore"){
   if(!twostep){
     x = cbind(alpha, beta)
     m = nrow(x)
@@ -47,8 +47,8 @@ localFDR <- function(alpha, beta, var_alpha, var_beta, lambda.init = c(0.7, 0.1,
     if(is.null(d1)) {stop("Please specify d1 for two-step MLFDR")}
     if(is.null(d2)) {stop("Please specify d2 for two-step MLFDR")}
     m = length(alpha)
-    fit_alpha = EM_fun.1(alpha, var_alpha, k = d1 + 1, epsilon = eps, maxit = 10000)
-    fit_beta = EM_fun.1(beta, var_beta, k = d2 + 1, epsilon = eps, maxit = 10000)
+    fit_alpha = EM_fun.1(alpha, var_alpha, k = d1 + 1, epsilon = eps, maxit = 10000, method = method)
+    fit_beta = EM_fun.1(beta, var_beta, k = d2 + 1, epsilon = eps, maxit = 10000, method = method)
     p_em = fit_alpha$lambda
     q_em = fit_beta$lambda
     mu_em = fit_alpha$mu
