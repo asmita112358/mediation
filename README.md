@@ -26,7 +26,7 @@ devtools::install_github("asmita112358/mediation")
 #> Downloading GitHub repo asmita112358/mediation@HEAD
 #> 
 #> ── R CMD build ─────────────────────────────────────────────────────────────────
-#>      checking for file ‘/private/var/folders/mk/vjmxbpp92m750qctwwm_qn440000gn/T/RtmpEMrPv0/remotes119323edac643/asmita112358-mediation-1ef81cc/DESCRIPTION’ ...  ✔  checking for file ‘/private/var/folders/mk/vjmxbpp92m750qctwwm_qn440000gn/T/RtmpEMrPv0/remotes119323edac643/asmita112358-mediation-1ef81cc/DESCRIPTION’
+#>      checking for file ‘/private/var/folders/mk/vjmxbpp92m750qctwwm_qn440000gn/T/RtmpIgdIFu/remotes11a45131474ee/asmita112358-mediation-a3df3a9/DESCRIPTION’ ...  ✔  checking for file ‘/private/var/folders/mk/vjmxbpp92m750qctwwm_qn440000gn/T/RtmpIgdIFu/remotes11a45131474ee/asmita112358-mediation-a3df3a9/DESCRIPTION’
 #>   ─  preparing ‘mediation’:
 #>      checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
 #>   ─  checking for LF line-endings in source and make files and shell scripts
@@ -39,7 +39,9 @@ devtools::install_github("asmita112358/mediation")
 
 ## Example
 
-This is a basic example which shows you how to implement MLFDR
+This is a basic example which demonstrates the implementation of MLFDR.
+For more in-depth examples, please refer to the results_in_paper as well
+as (<https://arxiv.org/abs/2402.13933>).
 
 ``` r
 library(mediation)
@@ -89,31 +91,28 @@ for(i in 1:m)
 }
 
 lfdr <- localFDR(alpha_hat, beta_hat, var_alpha, var_beta, twostep = FALSE)
-#> iteration= 0 loglik= -1903.73 
-#> iteration= 1 loglik= -1876.778 
-#> iteration= 2 loglik= -1872.96 
-#> iteration= 3 loglik= -1871.121 
-#> iteration= 4 loglik= -1870.007 
-#> iteration= 5 loglik= -1869.304 
-#> iteration= 6 loglik= -1868.849 
-#> iteration= 7 loglik= -1868.55 
-#> iteration= 8 loglik= -1868.352 
-#> iteration= 9 loglik= -1868.219 
-#> iteration= 10 loglik= -1868.129 
-#> iteration= 11 loglik= -1868.067 
-#> iteration= 12 loglik= -1868.025 
-#> iteration= 13 loglik= -1867.996 
-#> iteration= 14 loglik= -1867.976 
-#> iteration= 15 loglik= -1867.963 
-#> iteration= 16 loglik= -1867.953 
-#> number of iterations= 17
+#> iteration= 0 loglik= -1951.601 
+#> iteration= 1 loglik= -1929.225 
+#> iteration= 2 loglik= -1925.997 
+#> iteration= 3 loglik= -1924.571 
+#> iteration= 4 loglik= -1923.8 
+#> iteration= 5 loglik= -1923.362 
+#> iteration= 6 loglik= -1923.107 
+#> iteration= 7 loglik= -1922.956 
+#> iteration= 8 loglik= -1922.866 
+#> iteration= 9 loglik= -1922.811 
+#> iteration= 10 loglik= -1922.777 
+#> iteration= 11 loglik= -1922.757 
+#> iteration= 12 loglik= -1922.744 
+#> iteration= 13 loglik= -1922.736 
+#> number of iterations= 14
 
 rej = MLFDR(lfdr, size = 0.05)
 fdr <- sum(rej*tn)/max(1,sum(rej))
 power <- sum(rej*tp)/sum(tp)
 
 print(paste("FDR:", round(fdr,4)))
-#> [1] "FDR: 0.0351"
+#> [1] "FDR: 0.0333"
 print(paste("Power:", round(power,4)))
-#> [1] "Power: 0.2941"
+#> [1] "Power: 0.3037"
 ```

@@ -29,7 +29,8 @@ devtools::install_github("asmita112358/mediation")
 
 ## Example
 
-This is a basic example which shows you how to implement MLFDR
+This is a basic example which demonstrates the implementation of MLFDR. For more in-depth examples, please refer to the results_in_paper as well as (https://arxiv.org/abs/2402.13933).
+
 
 ```{r example}
 library(mediation)
