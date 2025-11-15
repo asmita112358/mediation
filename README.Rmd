@@ -21,7 +21,7 @@ The package MLFDR implements a local-FDR based solution to the high dimensional 
 
 ## Installation
 
-You can install the development version of mediation from [GitHub](https://github.com/asmita112358/mediation) with:
+You can install the development version of MLFDR from [GitHub](https://github.com/asmita112358/MLFDR) with:
 ```{r}
 devtools::install_github("asmita112358/MLFDR")
 ```
@@ -34,9 +34,9 @@ This is a basic example which demonstrates the implementation of MLFDR. For more
 
 ```{r example}
 library(MLFDR)
-n = 100
+n = 150
 m = 1000
-pi = c(0.4, 0.2, 0.3, 0.1)
+pi = c(0.4, 0.1, 0.3, 0.2)
 X = rbinom(n, 1, 0.1)
 M = matrix(nrow = m, ncol = n)
 Y = matrix(nrow = m, ncol = n)
